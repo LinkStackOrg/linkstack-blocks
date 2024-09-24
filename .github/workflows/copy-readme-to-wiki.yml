@@ -15,8 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Rename README.md to HOME.md
+        run: |
+          if [ -f README.md ]; then
+            mv README.md HOME.md
+          fi
       - uses: Andrew-Chen-Wang/github-wiki-action@v4
         with:
           token: ${{ secrets.GH_TOKEN }}
-          preprocess: true
           path: .
