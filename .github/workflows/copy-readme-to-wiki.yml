@@ -1,28 +1,18 @@
+name: Publish wiki
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
-name: Wiki Sync
+  push:
+    branches: [main]
+    paths:
+      - '**'
+      - .github/workflows/copy-readme-to-wiki.yml
+concurrency:
+  group: publish-wiki
+  cancel-in-progress: true
+permissions:
+  contents: write
 jobs:
-    update-wiki:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v2
-          - name: Copy README to Wiki
-            run: |
-              mkdir -p wiki
-              cp README.md wiki/
-          - name: Configure Git Safe Directory
-            run: git config --global --add safe.directory /wiki
-          - name: Sync Wiki
-            uses: joeizzard/action-wiki-sync@master
-            with:
-                username: LinkStackOrg
-                access_token: ${{ secrets.GH_TOKEN }}
-                wiki_folder: wiki
-                commit_username: 'JulianPrieber'
-                commit_email: 'JulianPrieber@users.noreply.github.com'
-                commit_message: 'action: wiki sync'
+  publish-wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Andrew-Chen-Wang/github-wiki-action@v4
