@@ -1,4 +1,4 @@
-name: Update Wiki
+name: Sync README to Wiki
 
 on:
   push:
@@ -6,32 +6,29 @@ on:
       - main
 
 jobs:
-  update-wiki:
+  sync-readme:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout the repo
-        uses: actions/checkout@v3
-      
-      - name: Set the wiki URL and the wiki README file path
-        run: |
-          WIKI_URL="https://github.com/$GITHUB_REPOSITORY.wiki.git"
-          README_FILE="README.md"
-          WIKI_README_FILE="Home.md"
+    - name: Checkout base code
+      uses: actions/checkout@v2
+      with:
+        path: base-code
 
-          mkdir wiki
-          cd wiki
-          git clone $WIKI_URL .
+    - name: Checkout wiki code
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ github.repository }}.wiki
+        path: wiki
 
-      - name: Set up Git user
-        run: |
-          git config --global user.email "julian.prieber@llc.ovh"
-          git config --global user.name "Julian Prieber"
+    - name: Copy README.md to wiki
+      run: |
+        cp base-code/README.md wiki/README.md
 
-      - name: Copy README to wiki
-        run: cp ../$README_FILE $WIKI_README_FILE
-
-      - name: Commit and push changes
-        run: |
-          git add $WIKI_README_FILE
-          git commit -m "Update Wiki README from main README" || echo "No changes to commit"
-          git push
+    - name: Push to wiki
+      run: |
+        cd wiki
+        git config --local user.email "julian.prieber@llc.ovh"
+        git config --local user.name "Julian Prieber"
+        git add README.md
+        git diff-index --quiet HEAD || git commit -m "Sync README.md to wiki" && git push
