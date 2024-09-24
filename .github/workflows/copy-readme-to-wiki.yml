@@ -1,3 +1,26 @@
-              - name: Publish READMEs to GitHub Wiki
-                uses: vigneshrajsb/github-wiki-publish-action@1.0.0
-            
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+name: Wiki Sync
+jobs:
+    update-wiki:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v2
+          - name: Copy README to Wiki
+            run: |
+              mkdir -p wiki
+              cp README.md wiki/
+          - name: Sync Wiki
+            uses: joeizzard/action-wiki-sync@master
+            with:
+                username: example
+                access_token: ${{ secrets.GH_TOKEN }}
+                wiki_folder: wiki
+                commit_username: 'Julian Prieber'
+                commit_email: 'JulianPrieber@users.noreply.github.com'
+                commit_message: 'action: wiki sync'
