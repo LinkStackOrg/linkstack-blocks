@@ -1,0 +1,3 @@
+              - name: Publish READMEs to GitHub Wiki
+                uses: vigneshrajsb/github-wiki-publish-action@1.0.0
+            
