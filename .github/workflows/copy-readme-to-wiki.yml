@@ -1,0 +1,35 @@
+name: Copy README to Wiki
+
+on:
+  push:
+    paths:
+      - 'README.md'
+  
+jobs:
+  copy-readme-to-wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Copy README.md to Wiki
+        run: |
+          # Set the wiki URL and the wiki README file path
+          WIKI_URL="https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
+          README_FILE="README.md"
+          WIKI_README_FILE="Home.md"
+          
+          # Create a temporary directory for the wiki
+          mkdir wiki
+          cd wiki
+          
+          # Clone the wiki
+          git clone $WIKI_URL .
+          
+          # Copy the README.md to the wiki
+          cp ../$README_FILE $WIKI_README_FILE
+          
+          # Commit and push changes
+          git add $WIKI_README_FILE
+          git commit -m "Update Wiki README from main README"
+          git push
