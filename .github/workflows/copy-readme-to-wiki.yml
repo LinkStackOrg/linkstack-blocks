@@ -1,22 +1,23 @@
-on:
-    push:
-        branches:
-            - master
-    pull_request:
-        branches:
-            - master
 name: Wiki Sync
+
+on:
+  push:
+    branches:
+      - "master"
+  pull_request:
+    branches:
+      - "master"
+
 jobs:
-    update-wiki:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@master
-          - name: Sync Wiki
-            uses: joeizzard/action-wiki-sync@master
-            with:
-                username: JulianPrieber
-                access_token: ${{ secrets.GH_TOKEN }}
-                wiki_folder: wiki
-                commit_username: 'JulianPrieber'
-                commit_email: 'julianprieber@users.noreply.github.com'
-                commit_message: 'action: wiki sync'
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: JoeIzzard/ghaction-wiki-sync@v1
+      with:
+        username: LinkStackOrg
+        access_token: "{{ secrets.GH_TOKEN }}"
+        wiki_folder: "docs"
+        commit_message: "Update Wiki"
+        commit_username: "JulianPrieber"
+        commit_email: "JulianPrieber@users.noreply.github.com"
