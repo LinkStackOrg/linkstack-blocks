@@ -430,6 +430,6 @@ When selecting names for CSS classes and JavaScript functions or classes, keep i
 
 # Development and Feedback
 
-### This system is currently in development. Should you have any suggestions for changes or new features, please open an issue on this repository to share your ideas.
+**This system is currently in development. Should you have any suggestions for changes or new features, please open an issue on this repository to share your ideas.**
 
-### The overarching goal of this system is to make it as user-friendly and easy to learn as possible while maximizing its functionality.
+**The overarching goal of this system is to make it as user-friendly and easy to learn as possible while maximizing its functionality.**
