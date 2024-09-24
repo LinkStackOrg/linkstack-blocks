@@ -1,23 +1,26 @@
-name: Wiki Sync
-
 on:
-  push:
-    branches:
-      - "main"
-  pull_request:
-    branches:
-      - "main"
-
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+name: Wiki Sync
 jobs:
-  stale:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@main
-    - uses: JoeIzzard/ghaction-wiki-sync@v1
-      with:
-        username: LinkStackOrg
-        access_token: "{{ secrets.GH_TOKEN }}"
-        wiki_folder: "docs"
-        commit_message: "Update Wiki"
-        commit_username: "JulianPrieber"
-        commit_email: "JulianPrieber@users.noreply.github.com"
+    update-wiki:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v2
+          - name: Copy README to Wiki
+            run: |
+              mkdir -p wiki
+              cp README.md wiki/
+          - name: Sync Wiki
+            uses: joeizzard/action-wiki-sync@main
+            with:
+                username: example
+                access_token: ${{ secrets.GH_TOKEN }}
+                wiki_folder: wiki
+                commit_username: 'Julian Prieber'
+                commit_email: 'JulianPrieber@users.noreply.github.com'
+                commit_message: 'action: wiki sync'
