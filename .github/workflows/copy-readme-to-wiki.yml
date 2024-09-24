@@ -16,7 +16,7 @@ jobs:
               mkdir -p wiki
               cp README.md wiki/
           - name: Sync Wiki
-            uses: joeizzard/action-wiki-sync@main
+            uses: joeizzard/action-wiki-sync@master
             with:
                 username: example
                 access_token: ${{ secrets.GH_TOKEN }}
