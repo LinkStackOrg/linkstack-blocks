@@ -1,5 +1,3 @@
-
-
 # LinkStack Blocks
 ### LinkStack blocks to expand the functionality of your instance.
 
