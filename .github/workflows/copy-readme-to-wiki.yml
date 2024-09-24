@@ -20,6 +20,7 @@ jobs:
       with:
         repository: ${{ github.repository }}.wiki
         path: wiki
+        ref: main
 
     - name: Copy README.md to wiki
       run: |
@@ -28,7 +29,9 @@ jobs:
     - name: Push to wiki
       run: |
         cd wiki
-        git config --local user.email "julian.prieber@llc.ovh"
-        git config --local user.name "Julian Prieber"
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
         git add README.md
         git diff-index --quiet HEAD || git commit -m "Sync README.md to wiki" && git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
