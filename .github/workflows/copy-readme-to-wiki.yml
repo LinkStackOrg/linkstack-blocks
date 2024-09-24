@@ -18,7 +18,7 @@ jobs:
           - name: Sync Wiki
             uses: joeizzard/action-wiki-sync@master
             with:
-                username: example
+                username: JulianPrieber
                 access_token: ${{ secrets.GH_TOKEN }}
                 wiki_folder: wiki
                 commit_username: 'Julian Prieber'
