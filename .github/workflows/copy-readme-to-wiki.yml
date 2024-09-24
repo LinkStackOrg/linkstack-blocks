@@ -20,7 +20,6 @@ jobs:
       with:
         repository: ${{ github.repository }}.wiki
         path: wiki
-        ref: main
 
     - name: Copy README.md to wiki
       run: |
