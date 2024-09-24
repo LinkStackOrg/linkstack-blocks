@@ -18,9 +18,9 @@ jobs:
           - name: Sync Wiki
             uses: joeizzard/action-wiki-sync@master
             with:
-                username: JulianPrieber
+                username: LinkStackOrg
                 access_token: ${{ secrets.GH_TOKEN }}
                 wiki_folder: wiki
-                commit_username: 'Julian Prieber'
+                commit_username: 'JulianPrieber'
                 commit_email: 'JulianPrieber@users.noreply.github.com'
                 commit_message: 'action: wiki sync'
