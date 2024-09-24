@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       
       - name: Copy README.md to Wiki
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           # Set the wiki URL and the wiki README file path
           WIKI_URL="https://$GITHUB_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
@@ -31,5 +33,5 @@ jobs:
           
           # Commit and push changes
           git add $WIKI_README_FILE
-          git commit -m "Update Wiki README from main README"
+          git commit -m "Update Wiki README from main README" || echo "No changes to commit"
           git push
