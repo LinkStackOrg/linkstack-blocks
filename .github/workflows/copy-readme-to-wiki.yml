@@ -11,12 +11,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - uses: actions/checkout@v2
-          - name: Configure Git Safe Directory
-            run: git config --global --add safe.directory /wiki
           - name: Copy README to Wiki
             run: |
               mkdir -p wiki
               cp README.md wiki/
+          - name: Configure Git Safe Directory
+            run: git config --global --add safe.directory /wiki
           - name: Sync Wiki
             uses: joeizzard/action-wiki-sync@master
             with:
