@@ -12,7 +12,7 @@ jobs:
         steps:
           - uses: actions/checkout@v2
           - name: Configure Git Safe Directory
-            run: git config --global --add safe.directory /github/workspace/wiki
+            run: git config --global --add safe.directory /wiki
           - name: Copy README to Wiki
             run: |
               mkdir -p wiki
