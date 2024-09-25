@@ -115,7 +115,7 @@ With this framework, you can create anything from simple buttons to complex elem
 #### File tree:
 ```
 .
-└── your-theme/
+└── your-block/
     ├── config.yml
     ├── display.blade.php
     ├── form.blade.php
