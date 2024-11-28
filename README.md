@@ -54,7 +54,7 @@ Yes. You should have prior experience with Laravel Blade, PHP, HTML, CSS, and Ja
 
 <details>
 <summary>Where can I report issues or provide feedback about the block system?</summary>
-You can open an issue on the repository to report problems or suggest improvements and new features.
+You can open an issue on <a href="https://github.com/LinkStackOrg/linkstack-blocks/issues">this repository</a> to report problems or suggest improvements and new features.
 </details>
 
 <details>
